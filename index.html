@@ -179,8 +179,18 @@ section{padding:clamp(64px,8vw,112px) 0}
 .artigo h3{font-size:20px;transition:.2s}
 .artigo:hover h3{color:var(--jade)}
 
-/* contato */
-#contato{background:#fff;border-top:1px solid var(--linho)}
+/* instagram */
+#social{background:var(--ameixa);color:var(--porcelana)}
+#social .eyebrow{color:var(--jade-claro)}
+#social .eyebrow::before{background:var(--jade-claro)}
+#social .lead{color:rgba(246,241,239,.66)}
+.social-topo{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,48px)}
+.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,26px);align-items:start}
+.reels iframe,.reels .instagram-media{margin:0!important;min-width:0!important;width:100%!important}
+.reel-fb{position:relative;display:block;aspect-ratio:9/16;border-radius:14px;overflow:hidden;text-decoration:none;background:linear-gradient(165deg,#4A3540,#2B1D26);border:1px solid rgba(246,241,239,.14);transition:.25s}
+.reel-fb:hover{transform:translateY(-3px);border-color:var(--jade-claro)}
+.reel-fb .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(246,241,239,.8)}
+.reel-fb b{position:absolute;left:18px;right:18px;bottom:18px;font-weight:500;font-size:14.5px;color:rgba(246,241,239,.85)}
 .contato-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,4vw,56px);align-items:center}
 .mapa{border-radius:14px;overflow:hidden;border:1px solid var(--linho);min-height:340px}
 .mapa iframe{display:block;width:100%;height:380px;border:0}
@@ -631,6 +641,20 @@ footer a:hover{color:var(--porcelana)}
   </div>
 </section>
 
+<!-- INSTAGRAM -->
+<section id="social">
+  <div class="wrap">
+    <div class="social-topo rev">
+      <div class="sec-head" style="margin-bottom:0">
+        <p class="eyebrow">@cavalcanteecirino</p>
+        <h2>Acompanhe as<br>novidades.</h2>
+      </div>
+      <a class="btn" href="https://instagram.com/cavalcanteecirino" target="_blank" rel="noopener">Seguir no Instagram</a>
+    </div>
+    <div class="reels rev" id="reels"></div>
+  </div>
+</section>
+
 <!-- CONTATO -->
 <section id="contato">
   <div class="wrap contato-grid">
@@ -710,6 +734,42 @@ const CONFIG = {
   token:    "",                  // ingest_token do tenant
   whatsapp: "5592984122505"
 };
+
+/* ============================================================
+   REELS DO INSTAGRAM
+   Cole aqui a URL de 3 posts/reels (Instagram → post → "..." →
+   Copiar link). Vazio, a seção mostra 3 cards levando ao perfil.
+   ============================================================ */
+const REELS = [
+  // "https://www.instagram.com/reel/XXXXXXXXXXX/",
+  // "https://www.instagram.com/reel/XXXXXXXXXXX/",
+  // "https://www.instagram.com/reel/XXXXXXXXXXX/"
+];
+
+(function montaReels(){
+  const alvo = document.getElementById('reels');
+  if (!alvo) return;
+  const validos = REELS.filter(u => /instagram\.com\/(p|reel|reels)\//.test(u));
+
+  if (validos.length){
+    alvo.innerHTML = validos.map(u =>
+      '<blockquote class="instagram-media" data-instgrm-permalink="' + u +
+      '" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:14px;margin:0;padding:0;width:100%"></blockquote>'
+    ).join('');
+    const s = document.createElement('script');
+    s.async = true; s.src = 'https://www.instagram.com/embed.js';
+    document.body.appendChild(s);
+    return;
+  }
+
+  const legendas = ['Bastidores da clínica','Tratamentos por dentro','Dúvidas dos pacientes'];
+  alvo.innerHTML = legendas.map(t =>
+    '<a class="reel-fb" href="https://instagram.com/cavalcanteecirino" target="_blank" rel="noopener">' +
+      '<span class="play"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">' +
+      '<circle cx="12" cy="12" r="10"/><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"/></svg></span>' +
+      '<b>' + t + '</b></a>'
+  ).join('');
+})();
 
 /* fotos vindas do site atual — se alguma falhar, o bloco fica com o fundo tratado */
 document.querySelectorAll('img').forEach(im => im.addEventListener('error', () => im.style.display = 'none'));
