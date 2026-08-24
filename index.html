@@ -53,37 +53,46 @@ h3{font-size:clamp(19px,2vw,23px);letter-spacing:-.02em}
 .btn-linha:hover{background:var(--nevoa);color:var(--tinta)}
 
 /* ---------- HERO ---------- */
-.hero{position:relative;margin:10px;border-radius:22px;overflow:hidden;min-height:min(88vh,820px);display:flex;flex-direction:column;justify-content:space-between;isolation:isolate}
-.hero-bg{position:absolute;inset:0;z-index:-2}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 25%}
-.hero-wash{position:absolute;inset:0;z-index:-1;
+.hero{position:relative;margin:10px;border-radius:22px;overflow:hidden;min-height:min(90vh,860px);display:flex;flex-direction:column;justify-content:space-between;isolation:isolate;
+  background:linear-gradient(118deg,#E1D3CF 0%,#EDE4E0 42%,#E8DDD9 72%,#DFD2CE 100%)}
+.hero-bg{position:absolute;inset:0;z-index:-3;overflow:hidden}
+.hero-bg img{position:absolute;right:0;top:0;width:66%;height:100%;object-fit:cover;object-position:60% 18%;
+  -webkit-mask-image:linear-gradient(96deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.35) 14%,rgba(0,0,0,.85) 34%,#000 52%);
+  mask-image:linear-gradient(96deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.35) 14%,rgba(0,0,0,.85) 34%,#000 52%)}
+.hero-wash{position:absolute;inset:0;z-index:-2;
   background:
-    radial-gradient(70% 55% at 8% 0%, rgba(232,201,198,.75) 0%, rgba(232,201,198,0) 62%),
-    radial-gradient(55% 50% at 92% 6%, rgba(207,201,220,.6) 0%, rgba(207,201,220,0) 60%),
-    radial-gradient(60% 45% at 50% 100%, rgba(240,217,200,.5) 0%, rgba(240,217,200,0) 65%),
-    linear-gradient(100deg, rgba(18,16,20,.72) 0%, rgba(18,16,20,.34) 44%, rgba(18,16,20,0) 72%),
-    linear-gradient(0deg, rgba(18,16,20,.5) 0%, rgba(18,16,20,0) 45%);
+    radial-gradient(48% 42% at 6% 26%, rgba(163,197,190,.55) 0%, rgba(163,197,190,0) 68%),
+    radial-gradient(40% 34% at 30% 62%, rgba(190,214,208,.42) 0%, rgba(190,214,208,0) 70%),
+    radial-gradient(52% 46% at 88% 8%, rgba(233,214,214,.6) 0%, rgba(233,214,214,0) 66%),
+    radial-gradient(70% 65% at 16% 58%, rgba(58,52,56,.42) 0%, rgba(58,52,56,.14) 46%, rgba(58,52,56,0) 74%),
+    linear-gradient(0deg, rgba(46,40,44,.34) 0%, rgba(46,40,44,0) 38%);
 }
-.topo{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 18px}
-.nav-pill{display:flex;align-items:center;gap:26px;background:rgba(255,255,255,.16);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.24);border-radius:999px;padding:9px 10px 9px 22px}
-.logo{font-family:var(--display);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#fff;text-decoration:none;font-weight:600;white-space:nowrap}
-.nav-pill nav{display:flex;gap:22px}
-.nav-pill nav a{color:rgba(255,255,255,.82);text-decoration:none;font-size:13.5px;transition:.2s}
-.nav-pill nav a:hover{color:#fff}
-.topo .btn{background:rgba(20,20,22,.82);backdrop-filter:blur(8px)}
-.menu-btn{display:none;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);border-radius:999px;color:#fff;cursor:pointer;padding:11px 13px;backdrop-filter:blur(14px)}
+.hero-vidro{position:absolute;z-index:-1;left:26%;top:-14%;width:34%;height:130%;transform:rotate(11deg);
+  background:linear-gradient(100deg,rgba(255,255,255,.26),rgba(255,255,255,.05) 46%,rgba(255,255,255,.22));
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);
+  mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);
+  pointer-events:none}
+.topo{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;padding:18px 20px}
+.logo{justify-self:start;font-family:var(--display);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta);text-decoration:none;font-weight:600;white-space:nowrap;border:1px solid rgba(20,20,22,.24);border-radius:999px;padding:9px 20px;transition:.2s}
+.logo:hover{background:rgba(255,255,255,.4)}
+.topo nav{display:flex;gap:26px;justify-self:center}
+.topo nav a{color:rgba(20,20,22,.72);text-decoration:none;font-size:13px;transition:.2s}
+.topo nav a:hover{color:var(--tinta)}
+.topo .btn{justify-self:end;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 24px}
+.menu-btn{display:none;justify-self:end;background:transparent;border:1px solid rgba(20,20,22,.24);border-radius:999px;color:var(--tinta);cursor:pointer;padding:11px 13px}
 
-.hero-corpo{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;padding:0 clamp(20px,3.4vw,44px);flex:1;align-content:end}
-.hero-txt{color:#fff;max-width:15ch;padding-bottom:6px}
-.hero-txt .olho{color:rgba(255,255,255,.75);margin-bottom:18px}
-.hero-txt h1{color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.25)}
-.chip-foto{display:inline-block;width:clamp(58px,7vw,104px);height:clamp(34px,4.2vw,60px);border-radius:999px;overflow:hidden;vertical-align:middle;margin:0 8px -4px 0;border:1px solid rgba(255,255,255,.5)}
+.hero-corpo{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start;padding:clamp(28px,5vh,64px) clamp(20px,3.4vw,44px) 0;flex:1}
+.hero-txt{color:#fff;max-width:14ch}
+.hero-txt .olho{color:rgba(255,255,255,.86);margin-bottom:14px;letter-spacing:.14em}
+.hero-txt h1{color:#fff;line-height:.94;font-size:clamp(40px,7.2vw,100px);text-shadow:0 2px 40px rgba(40,34,38,.4)}
+.chip-foto{display:inline-block;width:clamp(62px,7.4vw,112px);height:clamp(36px,4.6vw,66px);border-radius:14px;overflow:hidden;vertical-align:baseline;margin:0 10px -6px 0}
 .chip-foto img{width:100%;height:100%;object-fit:cover}
 .hero-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
 
-.stats{display:flex;flex-direction:column;gap:22px;text-align:right;color:#fff;padding-bottom:10px}
-.stat b{display:block;font-family:var(--display);font-size:clamp(26px,3.2vw,40px);font-weight:600;letter-spacing:-.03em;line-height:1}
-.stat span{font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.68)}
+.stats{display:flex;flex-direction:column;gap:clamp(18px,3vh,32px);text-align:right;color:#fff;padding-top:6px}
+.stat b{display:block;font-family:var(--display);font-size:clamp(26px,3.4vw,44px);font-weight:600;letter-spacing:-.03em;line-height:1;text-shadow:0 2px 24px rgba(40,34,38,.35)}
+.stat span{font-size:10.5px;letter-spacing:.05em;color:rgba(255,255,255,.75)}
 
 .hero-pe{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding:26px clamp(20px,3.4vw,44px) 28px}
 .hero-pe p{margin:0;max-width:48ch;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.82)}
@@ -235,19 +244,25 @@ footer a:hover{color:#fff}
   .camadas-grid,.form-grid,.contato-grid{grid-template-columns:1fr}
   .equipe,.artigos{grid-template-columns:repeat(2,1fr)}
   .chips{grid-template-columns:repeat(2,1fr)}
-  .nav-pill nav{display:none}
+  .topo{grid-template-columns:1fr auto}
+  .topo nav{display:none}
   .menu-btn{display:block}
-  .hero-corpo{grid-template-columns:1fr}
+  .hero-corpo{grid-template-columns:1fr;align-content:space-between}
   .hero-txt{max-width:100%}
-  .stats{flex-direction:row;text-align:left;gap:26px;flex-wrap:wrap;padding-top:26px}
+  .stats{flex-direction:row;text-align:left;gap:26px;flex-wrap:wrap;padding-top:30px}
+  .hero-bg img{width:100%;-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.25) 0%,#000 34%);mask-image:linear-gradient(180deg,rgba(0,0,0,.25) 0%,#000 34%)}
+  .hero-vidro{display:none}
   .rod-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:620px){
   .equipe,.artigos,.opcoes.duas,.rod-grid,.reels{grid-template-columns:1fr}
   .chips{grid-template-columns:1fr}
-  .hero{min-height:auto;padding-bottom:8px}
-  .hero-corpo{padding-top:110px}
-  .hero-pe{flex-direction:column;align-items:flex-start}
+  .hero{min-height:min(94vh,720px)}
+  .hero-corpo{padding-top:40px}
+  .hero-txt h1{font-size:clamp(38px,10.5vw,54px)}
+  .hero-pe{flex-direction:column;align-items:flex-start;gap:16px}
+  .stats{gap:18px 22px}
+  .stat b{font-size:26px}
   .camada-item{grid-template-columns:66px 1fr;gap:12px}
   .topo .btn{display:none}
 }
@@ -269,22 +284,18 @@ footer a:hover{color:#fff}
     <img src="https://cavalcantecirino.com.br/wp-content/uploads/2023/10/Banner-Home-Cirino-e-Cavalcante-manaus.jpg" alt="Equipe da Clínica Cavalcante e Cirino em Manaus">
   </div>
   <div class="hero-wash"></div>
+  <div class="hero-vidro"></div>
 
   <div class="topo">
-    <div class="nav-pill">
-      <a class="logo" href="#topo">Cavalcante &amp; Cirino</a>
-      <nav>
-        <a href="#especialidades">Especialidades</a>
-        <a href="#camadas">Como tratamos</a>
-        <a href="#equipe">Equipe</a>
-        <a href="#artigos">Conteúdo</a>
-        <a href="#contato">Contato</a>
-      </nav>
-    </div>
-    <a class="btn" href="#agendar">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
-      Agendar avaliação
-    </a>
+    <a class="logo" href="#topo">Cavalcante &amp; Cirino</a>
+    <nav>
+      <a href="#especialidades">Especialidades</a>
+      <a href="#camadas">Como tratamos</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#artigos">Conteúdo</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="btn" href="#agendar">Agendar avaliação</a>
     <button class="menu-btn" aria-label="Ir para o agendamento" onclick="document.getElementById('agendar').scrollIntoView()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
