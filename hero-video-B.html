@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clínica Cavalcante &amp; Cirino — Dermatologia, Tricologia e Medicina Integrada em Manaus</title>
+<meta name="description" content="Dermatologia clínica, cirúrgica e estética, tricologia e transplante capilar, endocrinologia e nutrição. Ed. Cristal Tower, Adrianópolis, Manaus.">
+<link rel="icon" href="https://cavalcantecirino.com.br/wp-content/uploads/2022/08/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tinta:#2F4156;
+  --ardosia:#567C8D;
+  --azul:#567C8D;
+  --azul-claro:#C8D9E6;
+  --azul-nevoa:#E4EDF4;
+  --gelo:#F5EFEB;
+  --branco:#FFFFFF;
+  --cinza:#5F7085;
+  --linha:#E3E4E4;
+
+  --display:"Playfair Display",Georgia,serif;
+  --corpo:"Inter",system-ui,-apple-system,sans-serif;
+
+  --max:1240px;
+  --gut:clamp(18px,4vw,52px);
+  --r:10px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--branco);color:var(--tinta);font-family:var(--corpo);font-size:16px;font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font-family:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--gut)}
+
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.12;letter-spacing:-.015em}
+h1{font-size:clamp(38px,5.6vw,74px);line-height:1.05}
+h2{font-size:clamp(28px,3.8vw,48px)}
+h3{font-size:clamp(18px,1.9vw,22px)}
+p{margin:0}
+.olho{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--azul);margin:0 0 14px;font-weight:400}
+.sub{font-size:15.5px;color:var(--cinza);max-width:54ch}
+
+.btn{display:inline-flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none;background:var(--ardosia);color:#fff;
+  border:1px solid var(--ardosia);font-size:11.5px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;
+  padding:16px 28px;border-radius:var(--r);transition:.3s cubic-bezier(.2,.7,.3,1)}
+.btn:hover{background:var(--tinta);border-color:var(--tinta);transform:translateY(-2px)}
+.btn .ar{display:flex;transition:transform .3s}
+.btn:hover .ar{transform:translateX(4px)}
+.btn-vidro{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.4);backdrop-filter:blur(10px);color:#fff}
+.btn-vidro:hover{background:rgba(255,255,255,.94);color:var(--tinta);border-color:transparent}
+.btn-linha{background:transparent;color:var(--ardosia);border-color:var(--linha)}
+.btn-linha:hover{background:var(--azul-nevoa);color:var(--tinta);border-color:var(--azul-nevoa)}
+
+/* ---------- nav ---------- */
+.topo{position:fixed;left:0;right:0;top:0;z-index:60;transition:.35s}
+.topo.fixo{background:rgba(255,255,255,.94);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--linha)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:82px}
+.marca{display:flex;align-items:center;gap:11px;text-decoration:none;color:#fff;transition:.3s;white-space:nowrap}
+.marca .sig{width:34px;height:34px;border-radius:50%;border:1px solid currentColor;display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:15px;flex:none}
+.marca b{font-family:var(--display);font-weight:400;font-size:17px;letter-spacing:.06em;line-height:1.1}
+.marca small{display:block;font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;opacity:.7}
+.topo.fixo .marca{color:var(--tinta)}
+.topo nav{display:flex;gap:32px}
+.topo nav a{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.88);text-decoration:none;transition:.25s}
+.topo nav a:hover{color:#fff}
+.topo.fixo nav a{color:var(--cinza)}
+.topo.fixo nav a:hover{color:var(--tinta)}
+.topo .btn{padding:13px 24px;font-size:11px}
+.topo.fixo .btn{background:var(--ardosia);border-color:var(--ardosia);color:#fff;backdrop-filter:none}
+.menu-btn{display:none;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);border-radius:var(--r);
+  width:46px;height:46px;color:#fff;cursor:pointer;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
+.topo.fixo .menu-btn{background:var(--ardosia);border-color:var(--ardosia)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:100svh;min-height:560px;overflow:hidden;background:var(--ardosia)}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.5s ease}
+.slide.on{opacity:1}
+.slide video{width:100%;height:100%;object-fit:cover;display:block}
+.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.07);transition:transform 9s ease}
+.slide.on img{transform:scale(1)}
+.slide::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(78% 62% at 50% 46%, rgba(47,65,86,.72) 0%, rgba(47,65,86,.5) 55%, rgba(47,65,86,.3) 100%),
+             linear-gradient(180deg, rgba(47,65,86,.42) 0%, rgba(47,65,86,.2) 34%, rgba(86,124,141,.36) 100%)}
+.hero-txt{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff}
+.hero-txt .wrap{display:flex;flex-direction:column;align-items:center;width:100%}
+.hero-txt h1{max-width:16ch;text-shadow:0 2px 40px rgba(30,42,58,.35)}
+.hero-txt h1 em{font-style:italic}
+.hero-txt p{max-width:46ch;color:rgba(255,255,255,.82);font-size:16px;margin-top:22px}
+.hero-txt .btn{margin-top:34px;align-self:center}
+.hero-nav{position:absolute;right:clamp(18px,4vw,52px);bottom:clamp(150px,20vh,210px);z-index:4;display:flex;gap:10px}
+.circ{width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.1);
+  backdrop-filter:blur(10px);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.28s}
+.circ:hover{background:#fff;color:var(--tinta);border-color:#fff}
+.abas{position:absolute;left:0;right:0;bottom:0;z-index:4;display:grid;grid-template-columns:repeat(4,1fr);
+  background:rgba(255,255,255,.1);backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.2)}
+.aba{display:flex;align-items:center;gap:14px;padding:26px clamp(14px,2vw,30px);color:#fff;text-decoration:none;
+  border-right:1px solid rgba(255,255,255,.16);transition:.3s}
+.aba:last-child{border-right:0}
+.aba:hover{background:rgba(255,255,255,.18)}
+.aba svg{opacity:.85;flex:none}
+.aba span{font-size:12.5px;letter-spacing:.08em;line-height:1.3}
+
+/* ---------- seções ---------- */
+section{padding:clamp(60px,7.5vw,110px) 0}
+.cab{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,60px);align-items:end;margin-bottom:clamp(30px,4vw,52px)}
+.cab h2{max-width:15ch}
+.cab .dir{display:flex;flex-direction:column;gap:20px;align-items:flex-start}
+
+/* serviços */
+.serv{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,24px)}
+.card{position:relative;display:flex;flex-direction:column;text-decoration:none;background:var(--gelo);
+  border:1px solid var(--linha);border-radius:var(--r);overflow:hidden;transition:.4s cubic-bezier(.2,.7,.3,1)}
+.card:hover{background:#fff;transform:translateY(-6px);box-shadow:0 30px 60px -46px rgba(47,65,86,.55)}
+.card .im{aspect-ratio:16/10;overflow:hidden;background:var(--azul-nevoa)}
+.card .im img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.3,1)}
+.card:hover .im img{transform:scale(1.06)}
+.card .tx{padding:24px 24px 26px;display:flex;flex-direction:column;gap:9px;flex:1}
+.card .rot{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--azul)}
+.card p{font-size:14px;color:var(--cinza);flex:1;line-height:1.6}
+.card .ir{align-self:flex-end;width:36px;height:36px;border-radius:50%;border:1px solid var(--linha);
+  display:flex;align-items:center;justify-content:center;transition:.3s;color:var(--ardosia)}
+.card:hover .ir{background:var(--ardosia);color:#fff;border-color:var(--ardosia)}
+
+/* tratamentos */
+.trat-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--linha);border-radius:var(--r);overflow:hidden}
+.trat{display:flex;gap:18px;align-items:flex-start;padding:30px 28px;border-right:1px solid var(--linha);border-bottom:1px solid var(--linha);
+  text-decoration:none;transition:.3s}
+.trat:nth-child(3n){border-right:0}
+.trat:nth-last-child(-n+3){border-bottom:0}
+.trat:hover{background:var(--gelo)}
+.trat .ic{width:52px;height:52px;border-radius:50%;background:var(--azul-nevoa);display:flex;align-items:center;justify-content:center;
+  flex:none;color:var(--ardosia);transition:.3s}
+.trat:hover .ic{background:var(--ardosia);color:#fff}
+.trat h3{font-size:17px;margin-bottom:3px}
+.trat p{font-size:13.5px;color:var(--cinza);line-height:1.6}
+
+/* camadas */
+.camadas{background:var(--gelo)}
+.camadas-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,4vw,60px);align-items:center}
+.corte{background:#fff;padding:14px;border:1px solid var(--linha);border-radius:var(--r)}
+.corte svg{display:block;width:100%;height:auto;border-radius:6px}
+.camada-hit{cursor:pointer}
+.camada-lista{display:flex;flex-direction:column;gap:6px}
+.camada-item{width:100%;text-align:left;cursor:pointer;color:inherit;background:#fff;border:1px solid var(--linha);border-radius:var(--r);
+  padding:18px 20px;display:grid;grid-template-columns:88px 1fr;gap:16px;align-items:baseline;transition:.3s;font-family:inherit}
+.camada-item:hover{border-color:var(--azul-claro)}
+.camada-item .prof{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--azul)}
+.camada-item h3{font-size:19px;margin-bottom:2px}
+.camada-item p{font-size:13.5px;color:var(--cinza);max-height:0;overflow:hidden;transition:max-height .4s ease,margin .4s ease}
+.camada-item[aria-selected="true"]{background:var(--ardosia);border-color:var(--ardosia);color:#fff}
+.camada-item[aria-selected="true"] .prof{color:var(--azul-claro)}
+.camada-item[aria-selected="true"] p{max-height:160px;margin-top:7px;color:rgba(255,255,255,.75)}
+
+/* números */
+.numeros{background:var(--ardosia);color:#fff}
+.num-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.num b{display:block;font-family:var(--display);font-size:clamp(32px,3.8vw,52px);font-weight:400;line-height:1}
+.num span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+
+/* equipe */
+.equipe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,24px)}
+.medico{background:var(--gelo);border:1px solid var(--linha);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:.4s}
+.medico:hover{transform:translateY(-5px);box-shadow:0 30px 60px -48px rgba(47,65,86,.5)}
+.medico .im{aspect-ratio:1/1.05;overflow:hidden;background:var(--azul-nevoa)}
+.medico .im img{width:100%;height:100%;object-fit:cover;object-position:center 16%;transition:transform 1s cubic-bezier(.2,.7,.3,1)}
+.medico:hover .im img{transform:scale(1.05)}
+.medico .tx{padding:22px 22px 26px}
+.medico h3{margin-bottom:3px}
+.medico .fn{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul);margin-bottom:14px}
+.medico ul{margin:0;padding:0;list-style:none;font-size:13px;color:var(--cinza);display:flex;flex-direction:column;gap:6px}
+.medico li{padding-left:14px;position:relative;line-height:1.5}
+.medico li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:1px;background:var(--azul)}
+.cta-medico{background:var(--ardosia);color:#fff;border-color:var(--ardosia);display:flex;align-items:center;justify-content:center;padding:36px 30px}
+.cta-medico h3{color:#fff;margin-bottom:12px}
+.cta-medico p{font-size:14px;color:rgba(255,255,255,.72);margin-bottom:24px}
+
+/* formulário */
+#agendar{background:var(--gelo)}
+.form-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,4vw,64px);align-items:start}
+.form-card{background:#fff;border:1px solid var(--linha);border-radius:var(--r);padding:clamp(24px,3vw,42px)}
+.passos{display:flex;gap:6px;margin-bottom:28px}
+.passo{flex:1;height:3px;border-radius:2px;background:var(--azul-nevoa);transition:.4s}
+.passo.on{background:var(--ardosia)}
+.etapa{display:none}
+.etapa.ativa{display:block;animation:sobe .4s cubic-bezier(.2,.7,.3,1)}
+@keyframes sobe{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.etapa-num{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--azul);margin-bottom:10px}
+.etapa h3{margin-bottom:6px}
+.etapa .ajuda{font-size:14px;color:var(--cinza);margin-bottom:22px}
+.opcoes{display:grid;gap:8px}
+.opcoes.duas{grid-template-columns:1fr 1fr}
+.op{display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;background:var(--gelo);border:1px solid var(--linha);
+  border-radius:var(--r);padding:15px 17px;font-family:inherit;font-size:14.5px;color:var(--tinta);transition:.25s}
+.op:hover{border-color:var(--azul-claro);background:#fff}
+.op[aria-pressed="true"]{border-color:var(--ardosia);background:var(--ardosia);color:#fff}
+.op .marca-op{width:16px;height:16px;border-radius:50%;border:1px solid var(--linha);flex:none;transition:.2s}
+.op[aria-pressed="true"] .marca-op{border-color:#fff;background:#fff;box-shadow:inset 0 0 0 3px var(--ardosia)}
+.campos{display:grid;gap:13px}
+.campo label{display:block;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--cinza);margin-bottom:7px}
+.campo input,.campo select{width:100%;padding:15px 16px;border:1px solid var(--linha);border-radius:var(--r);font-family:inherit;
+  font-size:15.5px;color:var(--tinta);background:var(--gelo);transition:.25s}
+.campo input:focus,.campo select:focus{outline:none;border-color:var(--ardosia);background:#fff}
+.lgpd{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--cinza);margin-top:16px}
+.lgpd input{margin-top:3px;accent-color:var(--ardosia);width:16px;height:16px;flex:none}
+.acoes{display:flex;gap:14px;margin-top:26px;align-items:center}
+.voltar{background:none;border:0;color:var(--cinza);font-size:13.5px;cursor:pointer;padding:10px 4px;text-decoration:underline;text-underline-offset:3px}
+.erro{color:#B2564A;font-size:13px;margin-top:12px;display:none}
+.erro.on{display:block}
+.sucesso{display:none;text-align:center;padding:14px 0}
+.sucesso.on{display:block;animation:sobe .4s ease}
+.sucesso .selo-ok{width:56px;height:56px;border-radius:50%;background:var(--azul-nevoa);color:var(--ardosia);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:22px}
+.sucesso h3{margin-bottom:8px}
+.sucesso p{color:var(--cinza);max-width:40ch;margin:0 auto 24px;font-size:14.5px}
+.beneficios{display:flex;flex-direction:column;gap:10px;margin-top:30px}
+.beneficio{display:grid;grid-template-columns:46px 1fr;gap:16px;align-items:center;background:#fff;border:1px solid var(--linha);
+  border-radius:var(--r);padding:16px 18px}
+.beneficio .ic{width:46px;height:46px;border-radius:50%;background:var(--azul-nevoa);color:var(--ardosia);display:flex;align-items:center;justify-content:center}
+.beneficio b{display:block;font-family:var(--display);font-weight:400;font-size:16px;margin-bottom:1px}
+.beneficio span{font-size:13.5px;color:var(--cinza)}
+
+/* reels e artigos */
+.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,22px)}
+.reels .instagram-media{margin:0!important;min-width:0!important;width:100%!important}
+.reel-fb{position:relative;display:block;aspect-ratio:9/13;border-radius:var(--r);overflow:hidden;text-decoration:none;
+  background:linear-gradient(165deg,var(--azul-claro),var(--ardosia));transition:.4s}
+.reel-fb:hover{transform:translateY(-5px)}
+.reel-fb .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.9)}
+.reel-fb b{position:absolute;left:18px;right:18px;bottom:18px;font-family:var(--display);font-weight:400;font-size:14.5px;color:#fff}
+
+.artigos{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px)}
+.artigo{text-decoration:none;display:flex;flex-direction:column;gap:12px;transition:.4s}
+.artigo:hover{transform:translateY(-5px)}
+.artigo .capa{aspect-ratio:16/11;border-radius:var(--r);overflow:hidden;background:var(--azul-nevoa)}
+.artigo .capa img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.3,1)}
+.artigo:hover .capa img{transform:scale(1.06)}
+.artigo time{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--azul)}
+.artigo h3{font-size:19px}
+
+/* contato */
+.contato-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,3.6vw,56px);align-items:center}
+.mapa{border-radius:var(--r);overflow:hidden;border:1px solid var(--linha)}
+.mapa iframe{display:block;width:100%;height:420px;border:0;filter:grayscale(.4) contrast(.95)}
+.dados{display:flex;flex-direction:column;margin-top:26px}
+.dado{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid var(--linha);align-items:baseline}
+.dado:first-child{border-top:1px solid var(--linha)}
+.dado b{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--azul);font-weight:400}
+.dado span,.dado a{font-size:15px;color:var(--tinta);text-decoration:none}
+.dado a:hover{color:var(--azul)}
+
+/* rodapé */
+footer{background:var(--tinta);color:rgba(255,255,255,.6);padding:clamp(50px,6vw,80px) 0 28px;font-size:14px}
+.rod-topo{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;padding-bottom:44px}
+footer h4{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--azul-claro);margin:0 0 16px;font-weight:400}
+footer a{text-decoration:none;transition:.25s}
+footer a:hover{color:#fff}
+.rod-marca{font-family:var(--display);font-size:24px;color:#fff;margin-bottom:12px}
+.rod-marca small{display:block;font-family:var(--corpo);font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--azul-claro);margin-top:2px}
+.rod-lista{display:flex;flex-direction:column;gap:8px}
+.rod-base{padding-top:22px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+
+.flutua{position:fixed;right:20px;bottom:20px;z-index:70;display:inline-flex;align-items:center;gap:9px;background:var(--ardosia);color:#fff;
+  padding:15px 24px;border-radius:var(--r);text-decoration:none;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  box-shadow:0 18px 40px -20px rgba(47,65,86,.75);transition:.3s}
+.flutua:hover{background:var(--tinta);transform:translateY(-2px)}
+
+.rev{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.3,1)}
+.rev.vis{opacity:1;transform:none}
+.rev-g>*{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.3,1)}
+.rev-g.vis>*{opacity:1;transform:none}
+.rev-g.vis>*:nth-child(2){transition-delay:.09s}
+.rev-g.vis>*:nth-child(3){transition-delay:.18s}
+.rev-g.vis>*:nth-child(4){transition-delay:.27s}
+.rev-g.vis>*:nth-child(5){transition-delay:.36s}
+.rev-g.vis>*:nth-child(6){transition-delay:.45s}
+
+@media(max-width:1000px){
+  .cab,.camadas-grid,.form-grid,.contato-grid{grid-template-columns:1fr}
+  .serv,.equipe-grid,.artigos{grid-template-columns:repeat(2,1fr)}
+  .trat-grid{grid-template-columns:repeat(2,1fr)}
+  .trat:nth-child(3n){border-right:1px solid var(--linha)}
+  .trat:nth-child(2n){border-right:0}
+  .trat:nth-last-child(-n+3){border-bottom:1px solid var(--linha)}
+  .trat:nth-last-child(-n+2){border-bottom:0}
+  .num-grid{grid-template-columns:repeat(2,1fr);gap:32px}
+  .rod-topo{grid-template-columns:1fr 1fr}
+  .topo nav{display:none}
+  .topo .btn{display:none}
+  .menu-btn{display:flex}
+  .abas{grid-template-columns:repeat(2,1fr)}
+  .aba:nth-child(2){border-right:0}
+  .aba:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.16)}
+  .hero-nav{bottom:clamp(210px,30vh,260px)}
+}
+@media(max-width:620px){
+  .serv,.equipe-grid,.artigos,.reels,.trat-grid,.opcoes.duas,.rod-topo{grid-template-columns:1fr}
+  .trat{border-right:0!important}
+  .trat:last-child{border-bottom:0}
+  .abas{grid-template-columns:1fr}
+  .aba{padding:16px 20px;border-right:0}
+  .aba:nth-child(n+3){display:none}
+  .hero-nav{display:none}
+  .dado{grid-template-columns:1fr;gap:2px}
+  .camada-item{grid-template-columns:74px 1fr;gap:12px}
+  .flutua{right:12px;bottom:12px;padding:13px 18px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .rev,.rev-g>*{opacity:1;transform:none}
+}
+:focus-visible{outline:2px solid var(--azul);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<div class="topo" id="topoBar">
+  <div class="wrap">
+    <a class="marca" href="#topo">
+      <span class="sig">C</span>
+      <span><b>Cavalcante &amp; Cirino</b><small>Medicina e estética</small></span>
+    </a>
+    <nav>
+      <a href="#especialidades">Especialidades</a>
+      <a href="#tratamentos">Tratamentos</a>
+      <a href="#camadas">Como tratamos</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="btn btn-vidro" href="#agendar">Agendar</a>
+    <button class="menu-btn" aria-label="Ir para o agendamento" onclick="document.getElementById('agendar').scrollIntoView()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="topo">
+  <div class="slide on">
+    <!-- Baixe o mp4 do Pexels e troque por: <source src="hero-b.mp4" type="video/mp4"> -->
+    <video autoplay muted loop playsinline preload="auto" poster="equipe.jpg">
+      <source src="https://www.pexels.com/download/video/3762903/" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="hero-txt">
+    <div class="wrap">
+      <h1 id="heroTitulo">Cuidar da pele é<br><em>cuidar de você</em></h1>
+      <p id="heroTexto">Dermatologia clínica, cirúrgica e estética, tricologia, endocrinologia e nutrição — reunidas em um só endereço, em Adrianópolis.</p>
+      <a class="btn btn-vidro" href="#agendar">Agendar avaliação
+        <span class="ar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+
+  <div class="abas">
+    <a class="aba" href="#especialidades">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c-2 4-6 5-6 10a6 6 0 0012 0c0-5-4-6-6-10z"/></svg>
+      <span>Tricologia e transplante</span>
+    </a>
+    <a class="aba" href="#especialidades">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="8"/><path d="M9 10h.01M15 10h.01M9 15c1.5 1 4.5 1 6 0"/></svg>
+      <span>Estética facial</span>
+    </a>
+    <a class="aba" href="#especialidades">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 20V9a4 4 0 018 0v11z"/><path d="M8 13h8"/></svg>
+      <span>Unhas e cirurgia</span>
+    </a>
+    <a class="aba" href="#especialidades">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <span>Endocrinologia</span>
+    </a>
+  </div>
+</header>
+
+<!-- ===== ESPECIALIDADES ===== -->
+<section id="especialidades">
+  <div class="wrap">
+    <div class="cab rev">
+      <div>
+        <p class="olho">Especialidades</p>
+        <h2>Medicina e estética no mesmo endereço</h2>
+      </div>
+      <div class="dir">
+        <p class="sub">Você é avaliado por quem trata aquilo todos os dias. Quando o caso pede mais de uma área, a conversa entre os especialistas acontece dentro da clínica — sem recomeçar a história em outro consultório.</p>
+        <a class="btn btn-linha" href="#agendar">Descobrir meu especialista</a>
+      </div>
+    </div>
+
+    <div class="serv rev-g">
+      <a class="card" href="#agendar">
+        <div class="im"><img src="https://cavalcantecirino.com.br/wp-content/uploads/2022/07/transplante-capilar-dermatologista-em-manaus-tricologistaclinica-Cavalcante-e-Cirino.jpg.webp" alt="Transplante capilar" loading="lazy"></div>
+        <div class="tx"><span class="rot">Tricologia</span><h3>Transplante capilar</h3>
+          <p>Técnica FUE, com coleta das unidades foliculares uma a uma: resultado natural e cicatriz pouco perceptível.</p>
+          <span class="ir"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+      </a>
+      <a class="card" href="#agendar">
+        <div class="im"><img src="https://cavalcantecirino.com.br/wp-content/uploads/2022/07/dermatologista-facial-em-manaus-1.jpg.webp" alt="Estética facial" loading="lazy"></div>
+        <div class="tx"><span class="rot">Face</span><h3>Estética facial</h3>
+          <p>Melasma, acne e flacidez. Ultraformer, Radiesse e Sculptra indicados a partir do exame clínico.</p>
+          <span class="ir"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+      </a>
+      <a class="card" href="#agendar">
+        <div class="im"><img src="https://cavalcantecirino.com.br/wp-content/uploads/2022/07/tratamento-estetica-corporal-em-manaus-1.jpg" alt="Estética corporal" loading="lazy"></div>
+        <div class="tx"><span class="rot">Corpo</span><h3>Estética corporal</h3>
+          <p>Flacidez, gordura localizada, celulite e textura da pele do corpo.</p>
+          <span class="ir"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+      </a>
+      <a class="card" href="#agendar">
+        <div class="im"><img src="https://cavalcantecirino.com.br/wp-content/uploads/2022/07/dermatologistacirurgica-em-manaus-1.jpg" alt="Dermatologia cirúrgica" loading="lazy"></div>
+        <div class="tx"><span class="rot">Cirúrgica</span><h3>Dermatologia cirúrgica</h3>
+          <p>Retirada de lesões, sinais e cistos com estudo anatomopatológico e cuidado com a cicatriz.</p>
+          <span class="ir"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+      </a>
+      <a class="card" href="#agendar">
+        <div class="im"><img src="https://cavalcantecirino.com.br/wp-content/uploads/2022/07/dermatologista-de-unhasl-em-manaus-1.jpg.webp" alt="Dermatologia de unhas" loading="lazy"></div>
+        <div class="tx"><span class="rot">Unhas</span><h3>Dermatologia de unhas</h3>
+          <p>Micoses, onicólise e doenças sistêmicas que aparecem primeiro na unha.</p>
+          <span class="ir"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+      </a>
+      <a class="card" href="#agendar">
+        <div class="im"><img src="https://cavalcantecirino.com.br/wp-content/uploads/2022/07/endocrinologista-em-manaus-1.jpg.webp" alt="Endocrinologia e nutrição" loading="lazy"></div>
+        <div class="tx"><span class="rot">Metabolismo</span><h3>Endocrinologia e nutrição</h3>
+          <p>Tireoide, diabetes e obesidade, com acompanhamento nutricional individual.</p>
+          <span class="ir"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRATAMENTOS ===== -->
+<section id="tratamentos" style="background:var(--gelo)">
+  <div class="wrap">
+    <div class="cab rev">
+      <div>
+        <p class="olho">Tratamentos</p>
+        <h2>Comece pela sua queixa</h2>
+      </div>
+      <div class="dir"><p class="sub">Não sabe a qual especialista recorrer? Escolha o que te incomoda — a equipe faz o direcionamento na avaliação.</p></div>
+    </div>
+    <div class="trat-grid rev">
+      <a class="trat" href="#agendar">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c-2 4-6 5-6 10a6 6 0 0012 0c0-5-4-6-6-10z"/></svg></span>
+        <span><h3>Queda de cabelo</h3><p>Tricoscopia, MMP capilar e cirurgia quando indicada</p></span>
+      </a>
+      <a class="trat" href="#agendar">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="8"/><path d="M9 10h.01M15 10h.01M9 15c1.5 1 4.5 1 6 0"/></svg></span>
+        <span><h3>Melasma e manchas</h3><p>Protocolo com peelings, laser e fotoproteção</p></span>
+      </a>
+      <a class="trat" href="#agendar">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 14c4-6 12-6 16 0M4 18c4-5 12-5 16 0"/><circle cx="12" cy="7" r="3"/></svg></span>
+        <span><h3>Flacidez facial</h3><p>Ultraformer e bioestimuladores de colágeno</p></span>
+      </a>
+      <a class="trat" href="#agendar">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2"/></svg></span>
+        <span><h3>Acne e cicatrizes</h3><p>Tratamento clínico e correção das marcas</p></span>
+      </a>
+      <a class="trat" href="#agendar">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 20V9a4 4 0 018 0v11z"/><path d="M8 13h8"/></svg></span>
+        <span><h3>Micose de unha</h3><p>Diagnóstico com micologia médica antes do tratamento</p></span>
+      </a>
+      <a class="trat" href="#agendar">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <span><h3>Tireoide e peso</h3><p>Endocrinologia com acompanhamento nutricional</p></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CAMADAS ===== -->
+<section class="camadas" id="camadas">
+  <div class="wrap">
+    <div class="cab rev">
+      <div>
+        <p class="olho">Como tratamos</p>
+        <h2>Cada queixa mora numa profundidade</h2>
+      </div>
+      <div class="dir"><p class="sub">Mancha, flacidez, queda de cabelo e ganho de peso não estão no mesmo lugar — e por isso não se resolvem com o mesmo recurso. A conduta começa por identificar em que camada está o problema.</p></div>
+    </div>
+
+    <div class="camadas-grid">
+      <div class="corte rev">
+        <svg viewBox="0 0 400 460" role="img" aria-label="Corte transversal da pele com as camadas tratadas na clínica">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FAF7F4"/><stop offset="1" stop-color="#F0E7E0"/></linearGradient>
+            <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBDDD3"/><stop offset="1" stop-color="#DCC7B9"/></linearGradient>
+            <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D2B3A3"/><stop offset="1" stop-color="#BC9887"/></linearGradient>
+            <linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A08174"/><stop offset="1" stop-color="#7B6459"/></linearGradient>
+            <linearGradient id="g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A5D74"/><stop offset="1" stop-color="#2F4156"/></linearGradient>
+          </defs>
+          <g class="camada-hit" data-c="0"><rect x="0" y="0" width="400" height="66" fill="url(#g1)"/></g>
+          <g class="camada-hit" data-c="1"><rect x="0" y="66" width="400" height="112" fill="url(#g2)"/></g>
+          <g class="camada-hit" data-c="2"><rect x="0" y="178" width="400" height="104" fill="url(#g3)"/></g>
+          <g class="camada-hit" data-c="3"><rect x="0" y="282" width="400" height="94" fill="url(#g4)"/></g>
+          <g class="camada-hit" data-c="4"><rect x="0" y="376" width="400" height="84" fill="url(#g5)"/></g>
+          <g stroke="#6F5A4E" fill="none" stroke-width="3" stroke-linecap="round" opacity=".4">
+            <path d="M120 -12 C 118 60, 126 140, 122 210 C 119 262, 132 286, 128 310"/>
+            <path d="M262 -18 C 266 70, 254 150, 260 220 C 264 268, 250 292, 256 316"/>
+          </g>
+          <circle cx="128" cy="318" r="13" fill="#6F5A4E" opacity=".4"/>
+          <circle cx="256" cy="324" r="13" fill="#6F5A4E" opacity=".4"/>
+          <rect id="marcador" x="0" y="0" width="400" height="66" fill="rgba(47,65,86,.16)" stroke="#2F4156" stroke-width="3"
+            style="transition:all .5s cubic-bezier(.2,.7,.3,1)"/>
+        </svg>
+      </div>
+
+      <div class="camada-lista" role="tablist" aria-label="Camadas de tratamento">
+        <button class="camada-item" role="tab" aria-selected="true" data-c="0" data-y="0" data-h="66">
+          <span class="prof">0,1 mm</span>
+          <span><h3>Epiderme</h3><p>Acne, manchas, melasma, rosácea e checagem de lesões. Limpeza de pele, peelings e dermatoscopia.</p></span>
+        </button>
+        <button class="camada-item" role="tab" aria-selected="false" data-c="1" data-y="66" data-h="112">
+          <span class="prof">1,5 mm</span>
+          <span><h3>Derme</h3><p>Onde mora o colágeno. Bioestimuladores como Radiesse e Sculptra, lasers e tratamento de cicatrizes.</p></span>
+        </button>
+        <button class="camada-item" role="tab" aria-selected="false" data-c="2" data-y="178" data-h="104">
+          <span class="prof">3,0 mm</span>
+          <span><h3>Folículo</h3><p>Tricoscopia, biópsia do couro cabeludo, MMP capilar e transplante pela técnica FUE — inclusive de fios para sobrancelha.</p></span>
+        </button>
+        <button class="camada-item" role="tab" aria-selected="false" data-c="3" data-y="282" data-h="94">
+          <span class="prof">4,5 mm</span>
+          <span><h3>SMAS</h3><p>A camada de sustentação do rosto. Ultraformer, ultrassom micro e macrofocado, sem cortes.</p></span>
+        </button>
+        <button class="camada-item" role="tab" aria-selected="false" data-c="4" data-y="376" data-h="84">
+          <span class="prof">Sistêmico</span>
+          <span><h3>Metabolismo</h3><p>Endocrinologia e nutrição. Tireoide, diabetes, obesidade e o que a alimentação devolve para a pele.</p></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NÚMEROS ===== -->
+<section class="numeros">
+  <div class="wrap num-grid rev-g">
+    <div class="num"><b>5</b><span>Especialistas</span></div>
+    <div class="num"><b>7</b><span>Áreas de atendimento</span></div>
+    <div class="num"><b>4</b><span>Países na formação</span></div>
+    <div class="num"><b>5,0</b><span>Avaliação no Google</span></div>
+  </div>
+</section>
+
+<!-- ===== EQUIPE ===== -->
+<section id="equipe">
+  <div class="wrap">
+    <div class="cab rev">
+      <div>
+        <p class="olho">Nossa equipe</p>
+        <h2>Quem vai te atender</h2>
+      </div>
+      <div class="dir"><p class="sub">Formação nas principais escolas do Brasil, da Europa e dos Estados Unidos — apaixonados por dermatologia, saúde e bem-estar.</p></div>
+    </div>
+
+    <div class="equipe-grid rev-g">
+      <div class="medico">
+        <div class="im"><img src="https://cavalcantecirino.com.br/wp-content/uploads/2022/07/dermatologista-especialista-em-cabelos-manaus.jpg.webp" alt="Dr. Pablo Cirino" loading="lazy"></div>
+        <div class="tx"><h3>Dr. Pablo Cirino</h3><p class="fn">Dermatologia · Tricologia</p>
+          <ul><li>Dermatologista pela UFRJ, especialista pela SBD</li><li>Fellow em Munique e em Tricologia no Saint-Louis, Paris</li>
+            <li>Doutorando USP e Universidade de Minnesota</li><li>Cirurgião capilar, membro da ISHRS</li></ul></div>
+      </div>
+      <div class="medico">
+        <div class="im"><img src="https://cavalcantecirino.com.br/wp-content/uploads/2022/07/dermatologista-facial-em-manaus.jpg.webp" alt="Dra. Raquel Cavalcante" loading="lazy"></div>
+        <div class="tx"><h3>Dra. Raquel Cavalcante</h3><p class="fn">Dermatologia · Estética e laser</p>
+          <ul><li>Dermatologista pela UFRJ, especialista pela SBD</li><li>Fellow no Mount Sinai, Nova York</li>
+            <li>Fellow no Henry Mondor, Paris</li><li>Fellow em estética e laser e mestranda pela USP</li></ul></div>
+      </div>
+      <div class="medico">
+        <div class="im"><img src="https://cavalcantecirino.com.br/wp-content/uploads/2022/07/dr-helder-cavalcante-dermatologista-especialista-em-unhas-manaus.jpg.webp" alt="Dr. Helder Cavalcante" loading="lazy"></div>
+        <div class="tx"><h3>Dr. Helder Cavalcante</h3><p class="fn">Dermatologia · Unhas</p>
+          <ul><li>Dermatologista pela UFRJ, especialista pela SBD</li><li>Especialista em micologia médica e doenças da unha pela UnB</li>
+            <li>Mestre em Dermatologia pela UnB</li></ul></div>
+      </div>
+      <div class="medico">
+        <div class="im"><img src="https://cavalcantecirino.com.br/wp-content/uploads/2022/07/dra-raquel-cavalcante-Endocrinologista-em-manaus.jpg.webp" alt="Dra. Rebeca Cavalcante" loading="lazy"></div>
+        <div class="tx"><h3>Dra. Rebeca Cavalcante</h3><p class="fn">Endocrinologia e metabologia</p>
+          <ul><li>Membro titular da SBEM e da SBD (Diabetes)</li><li>Medicina pela UFAM</li>
+            <li>Especialização em Endocrinologia — HUPE</li><li>Pós em Nutrologia pela ABRAN e doutoranda pela UERJ</li></ul></div>
+      </div>
+      <div class="medico">
+        <div class="im"><img src="https://cavalcantecirino.com.br/wp-content/uploads/2022/07/Nutricionista-em-manaus.jpg.webp" alt="Dra. Ariane Zanon Calv" loading="lazy"></div>
+        <div class="tx"><h3>Dra. Ariane Zanon Calv</h3><p class="fn">Nutrição</p>
+          <ul><li>Graduada pela Universidade Vila Velha</li><li>Sete anos em obesidade e dislipidemias</li>
+            <li>Nutrição Oncológica pelo Albert Einstein</li><li>Especialização em Nutrição e Estética</li></ul></div>
+      </div>
+      <div class="medico cta-medico">
+        <div>
+          <h3>Não sabe por onde começar?</h3>
+          <p>Responda quatro perguntas e a equipe indica o especialista certo para o seu caso.</p>
+          <a class="btn btn-vidro" href="#agendar">Responder agora</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FORMULÁRIO ===== -->
+<section id="agendar">
+  <div class="wrap">
+    <div class="cab rev">
+      <div>
+        <p class="olho">Agendamento</p>
+        <h2>Conte o seu caso em 1 minuto</h2>
+      </div>
+      <div class="dir"><p class="sub">Assim a equipe já chega no WhatsApp sabendo do que você precisa — sem repetir a história três vezes.</p></div>
+    </div>
+
+    <div class="form-grid">
+      <div class="rev">
+        <div class="beneficios">
+          <div class="beneficio">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12l4 4 10-10"/></svg></span>
+            <span><b>Direcionamento certo</b><span>Você vai ao especialista da sua queixa, não a uma fila genérica.</span></span>
+          </div>
+          <div class="beneficio">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <span><b>Retorno no mesmo dia útil</b><span>Segunda a sexta, 8h às 20h, e sábado até 12h.</span></span>
+          </div>
+          <div class="beneficio">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span>
+            <span><b>Seus dados ficam com a clínica</b><span>Usados apenas para agendar e acompanhar seu atendimento.</span></span>
+          </div>
+          <div class="beneficio">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-4.6-7-10a7 7 0 0114 0c0 5.4-7 10-7 10z"/><circle cx="12" cy="11" r="2.4"/></svg></span>
+            <span><b>Ed. Cristal Tower, sala 601</b><span>Av. Umberto Calderaro Filho, 455 — Adrianópolis.</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card rev">
+        <div class="passos" id="passos" aria-hidden="true">
+          <div class="passo on"></div><div class="passo"></div><div class="passo"></div><div class="passo"></div>
+        </div>
+
+        <div class="etapa ativa" data-e="1">
+          <p class="etapa-num">Etapa 1 de 4</p>
+          <h3>O que você quer cuidar?</h3>
+          <p class="ajuda">Escolha o que mais se aproxima. Se for mais de um, escolha o principal.</p>
+          <div class="opcoes" data-campo="interesse">
+            <button class="op" aria-pressed="false" data-v="Queda de cabelo / transplante capilar" data-s="10"><span class="marca-op"></span>Queda de cabelo ou transplante capilar</button>
+            <button class="op" aria-pressed="false" data-v="Rejuvenescimento facial / flacidez" data-s="9"><span class="marca-op"></span>Rejuvenescimento facial ou flacidez</button>
+            <button class="op" aria-pressed="false" data-v="Pele: acne, manchas, melasma" data-s="8"><span class="marca-op"></span>Pele: acne, manchas ou melasma</button>
+            <button class="op" aria-pressed="false" data-v="Estética corporal" data-s="7"><span class="marca-op"></span>Estética corporal</button>
+            <button class="op" aria-pressed="false" data-v="Lesão, sinal ou cirurgia dermatológica" data-s="8"><span class="marca-op"></span>Lesão, sinal ou cirurgia dermatológica</button>
+            <button class="op" aria-pressed="false" data-v="Unhas" data-s="6"><span class="marca-op"></span>Unhas</button>
+            <button class="op" aria-pressed="false" data-v="Endocrinologia ou nutrição" data-s="7"><span class="marca-op"></span>Endocrinologia ou nutrição</button>
+          </div>
+        </div>
+
+        <div class="etapa" data-e="2">
+          <p class="etapa-num">Etapa 2 de 4</p>
+          <h3>Você já tratou isso antes?</h3>
+          <p class="ajuda">Ajuda o médico a saber por onde começar a avaliação.</p>
+          <div class="opcoes" data-campo="historico">
+            <button class="op" aria-pressed="false" data-v="Nunca tratei" data-s="6"><span class="marca-op"></span>Nunca tratei</button>
+            <button class="op" aria-pressed="false" data-v="Já tratei e não resolveu" data-s="9"><span class="marca-op"></span>Já tratei e não resolveu</button>
+            <button class="op" aria-pressed="false" data-v="Faço acompanhamento hoje" data-s="7"><span class="marca-op"></span>Faço acompanhamento hoje, quero segunda opinião</button>
+            <button class="op" aria-pressed="false" data-v="Só quero entender minhas opções" data-s="4"><span class="marca-op"></span>Só quero entender minhas opções</button>
+          </div>
+        </div>
+
+        <div class="etapa" data-e="3">
+          <p class="etapa-num">Etapa 3 de 4</p>
+          <h3>Quando você quer começar?</h3>
+          <p class="ajuda">Reservamos os horários mais próximos para quem já quer iniciar.</p>
+          <div class="opcoes duas" data-campo="urgencia">
+            <button class="op" aria-pressed="false" data-v="Esta semana" data-s="30"><span class="marca-op"></span>Esta semana</button>
+            <button class="op" aria-pressed="false" data-v="Este mês" data-s="20"><span class="marca-op"></span>Este mês</button>
+            <button class="op" aria-pressed="false" data-v="Nos próximos 3 meses" data-s="10"><span class="marca-op"></span>Nos próximos 3 meses</button>
+            <button class="op" aria-pressed="false" data-v="Só pesquisando" data-s="0"><span class="marca-op"></span>Só pesquisando</button>
+          </div>
+        </div>
+
+        <div class="etapa" data-e="4">
+          <p class="etapa-num">Etapa 4 de 4</p>
+          <h3>Para onde mandamos o retorno?</h3>
+          <p class="ajuda">A secretaria fala com você no WhatsApp com os horários disponíveis.</p>
+          <div class="campos">
+            <div class="campo"><label for="nome">Nome completo</label><input id="nome" type="text" autocomplete="name" placeholder="Como podemos te chamar"></div>
+            <div class="campo"><label for="fone">WhatsApp</label><input id="fone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(92) 9 0000-0000"></div>
+            <div class="campo"><label for="turno">Melhor turno para atendimento</label>
+              <select id="turno">
+                <option value="">Selecione</option>
+                <option>Manhã (8h às 12h)</option>
+                <option>Tarde (12h às 17h)</option>
+                <option>Fim de tarde (17h às 20h)</option>
+                <option>Sábado pela manhã</option>
+              </select>
+            </div>
+          </div>
+          <label class="lgpd"><input type="checkbox" id="lgpd"><span>Autorizo a Clínica Cavalcante &amp; Cirino a entrar em contato comigo por WhatsApp para agendar meu atendimento.</span></label>
+        </div>
+
+        <p class="erro" id="erro">Selecione uma opção para continuar.</p>
+
+        <div class="acoes" id="acoes">
+          <button class="btn" id="proximo">Continuar</button>
+          <button class="voltar" id="voltar" style="display:none">Voltar</button>
+        </div>
+
+        <div class="sucesso" id="sucesso">
+          <div class="selo-ok">✓</div>
+          <h3>Recebemos o seu pedido</h3>
+          <p id="msg-sucesso">A secretaria vai te chamar no WhatsApp com os horários disponíveis para a sua avaliação.</p>
+          <a class="btn" id="wa-direto" href="#" target="_blank" rel="noopener">Falar agora no WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INSTAGRAM ===== -->
+<section>
+  <div class="wrap">
+    <div class="cab rev">
+      <div>
+        <p class="olho">@cavalcanteecirino</p>
+        <h2>Acompanhe as novidades</h2>
+      </div>
+      <div class="dir"><a class="btn btn-linha" href="https://instagram.com/cavalcanteecirino" target="_blank" rel="noopener">Seguir no Instagram</a></div>
+    </div>
+    <div class="reels rev-g" id="reels"></div>
+  </div>
+</section>
+
+<!-- ===== ARTIGOS ===== -->
+<section id="artigos" style="background:var(--gelo)">
+  <div class="wrap">
+    <div class="cab rev">
+      <div>
+        <p class="olho">Conteúdo</p>
+        <h2>Do consultório para você</h2>
+      </div>
+      <div class="dir"><p class="sub">O que a equipe explica todo dia na consulta, escrito para você decidir com informação.</p></div>
+    </div>
+    <div class="artigos rev-g">
+      <a class="artigo" href="https://cavalcantecirino.com.br/entenda-como-funciona-o-ultraformer/">
+        <div class="capa"><img src="https://cavalcantecirino.com.br/wp-content/uploads/2022/12/entenda-como-funciona-o-ultraformer-960x720.jpg.webp" alt="Ultraformer" loading="lazy"></div>
+        <time>Dezembro de 2022</time><h3>Entenda como funciona o Ultraformer</h3>
+      </a>
+      <a class="artigo" href="https://cavalcantecirino.com.br/rosto-de-top-model/">
+        <div class="capa"><img src="https://cavalcantecirino.com.br/wp-content/uploads/2022/01/Clinica-cavalcante-e-cirno-blog.jpg.webp" alt="Efeito top model look" loading="lazy"></div>
+        <time>Janeiro de 2022</time><h3>Efeito top model look</h3>
+      </a>
+      <a class="artigo" href="https://cavalcantecirino.com.br/ultraformeriii/">
+        <div class="capa"><img src="https://cavalcantecirino.com.br/wp-content/uploads/2022/01/Clinica-cavalcante-e-cirno-blog-ultraformer.jpg.webp" alt="Ultraformer III" loading="lazy"></div>
+        <time>Setembro de 2021</time><h3>Ultraformer III — ultrassom micro e macrofocado</h3>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTATO ===== -->
+<section id="contato">
+  <div class="wrap contato-grid">
+    <div class="rev">
+      <p class="olho">Onde estamos</p>
+      <h2>Venha nos visitar</h2>
+      <div class="dados">
+        <div class="dado"><b>Endereço</b><span>Av. Umberto Calderaro Filho, 455 — sala 601<br>Ed. Cristal Tower · Adrianópolis, Manaus — AM</span></div>
+        <div class="dado"><b>WhatsApp</b><a href="https://api.whatsapp.com/send?phone=5592984122505&amp;text=Oi%2C%20estava%20no%20site%20e%20gostaria%20de%20agendar%20uma%20consulta.">(92) 98412-2505</a></div>
+        <div class="dado"><b>Telefone</b><a href="tel:+559236593540">(92) 3659-3540</a></div>
+        <div class="dado"><b>Horários</b><span>Segunda a sexta, 8h às 20h · Sábado, 8h às 12h</span></div>
+      </div>
+      <div style="margin-top:28px"><a class="btn" href="#agendar">Agendar avaliação</a></div>
+    </div>
+    <div class="mapa rev">
+      <iframe title="Mapa da Clínica Cavalcante e Cirino" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15935.860171221419!2d-60.0103895!3d-3.103943!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xab7f88a163250c64!2sCavalcante%20e%20Cirino%20Dermatologia!5e0!3m2!1spt-BR!2sbr!4v1657555567777!5m2!1spt-BR!2sbr"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="rod-topo">
+      <div>
+        <div class="rod-marca">Cavalcante &amp; Cirino<small>Medicina e estética</small></div>
+        <p style="margin:0 0 22px;max-width:32ch">Dermatologia clínica, cirúrgica e estética, tricologia, endocrinologia e nutrição em Manaus.</p>
+        <a class="btn btn-vidro" href="#agendar">Agendar avaliação</a>
+      </div>
+      <div>
+        <h4>Endereço</h4>
+        <div class="rod-lista">
+          <span>Ed. Cristal Tower, sala 601</span><span>Av. Umberto Calderaro Filho, 455</span>
+          <span>Adrianópolis — Manaus, AM</span><span>CEP 69057-015</span>
+        </div>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <div class="rod-lista">
+          <a href="https://api.whatsapp.com/send?phone=5592984122505">WhatsApp (92) 98412-2505</a>
+          <a href="tel:+559236593540">Telefone (92) 3659-3540</a>
+          <a href="https://instagram.com/cavalcanteecirino">@cavalcanteecirino</a>
+        </div>
+      </div>
+      <div>
+        <h4>Horários</h4>
+        <div class="rod-lista">
+          <span>Segunda a sexta · 8h — 20h</span><span>Sábado · 8h — 12h</span><span>Domingo · fechado</span>
+        </div>
+      </div>
+    </div>
+    <div class="rod-base">
+      <span>© 2026 Clínica Cavalcante &amp; Cirino</span>
+      <span>Proposta de redesign · RISE Design &amp; Branding</span>
+    </div>
+  </div>
+</footer>
+
+<a class="flutua" href="#agendar">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l2-5.2a8.4 8.4 0 0 1-.9-3.8 8.4 8.4 0 0 1 8.4-9 8.4 8.4 0 0 1 8.5 8.5z"/></svg>
+  Agendar
+</a>
+
+<script>
+/* ============================================================
+   CONFIGURAÇÃO — RISE
+   ============================================================ */
+const CONFIG = {
+  endpoint: "",                  // ex.: https://capta.riseagencia.com/api/capta-ingest
+  slug:     "cavalcante-cirino",
+  token:    "",                  // ingest_token do tenant
+  whatsapp: "5592984122505"
+};
+
+/* Reels: cole a URL de até 3 posts (Instagram → post → ... → Copiar link) */
+const REELS = [];
+
+/* ---------- vídeo do hero ---------- */
+/* pausa o vídeo quando o hero sai da tela, para poupar bateria e dados */
+const vid = document.querySelector('.hero video');
+if (vid){
+  new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? vid.play().catch(()=>{}) : vid.pause()),
+    { threshold:.05 }).observe(document.querySelector('.hero'));
+}
+
+/* ---------- nav fixa ---------- */
+addEventListener('scroll', () => {
+  document.getElementById('topoBar').classList.toggle('fixo', scrollY > 80);
+}, {passive:true});
+
+/* ---------- reels ---------- */
+(function montaReels(){
+  const alvo = document.getElementById('reels'); if (!alvo) return;
+  const validos = REELS.filter(u => /instagram\.com\/(p|reel|reels)\//.test(u));
+  if (validos.length){
+    alvo.innerHTML = validos.map(u =>
+      '<blockquote class="instagram-media" data-instgrm-permalink="' + u +
+      '" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:10px;margin:0;padding:0;width:100%"></blockquote>').join('');
+    const s = document.createElement('script'); s.async = true; s.src = 'https://www.instagram.com/embed.js';
+    document.body.appendChild(s); return;
+  }
+  const legendas = ['Bastidores da clínica','Tratamentos por dentro','Dúvidas dos pacientes'];
+  alvo.innerHTML = legendas.map(t =>
+    '<a class="reel-fb" href="https://instagram.com/cavalcanteecirino" target="_blank" rel="noopener">' +
+    '<span class="play"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">' +
+    '<circle cx="12" cy="12" r="10"/><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"/></svg></span>' +
+    '<b>' + t + '</b></a>').join('');
+})();
+
+document.querySelectorAll('img').forEach(im => im.addEventListener('error', () => im.style.visibility = 'hidden'));
+
+/* ---------- camadas ---------- */
+const itens = document.querySelectorAll('.camada-item');
+const marcador = document.getElementById('marcador');
+function selecionaCamada(i){
+  itens.forEach(el => el.setAttribute('aria-selected', el.dataset.c === String(i)));
+  const alvo = document.querySelector('.camada-item[data-c="'+i+'"]');
+  if (alvo && marcador){ marcador.setAttribute('y', alvo.dataset.y); marcador.setAttribute('height', alvo.dataset.h); }
+}
+itens.forEach(el => el.addEventListener('click', () => selecionaCamada(el.dataset.c)));
+document.querySelectorAll('.camada-hit').forEach(g => g.addEventListener('click', () => selecionaCamada(g.dataset.c)));
+
+/* ---------- reveal ---------- */
+const obs = new IntersectionObserver(es => es.forEach(en => {
+  if (en.isIntersecting){ en.target.classList.add('vis'); obs.unobserve(en.target); }
+}), { threshold:.12 });
+document.querySelectorAll('.rev,.rev-g').forEach(el => obs.observe(el));
+
+/* ---------- formulário ---------- */
+const resp = {}; let etapa = 1; const total = 4;
+const erro = document.getElementById('erro');
+
+document.querySelectorAll('.opcoes').forEach(grupo => {
+  grupo.querySelectorAll('.op').forEach(op => {
+    op.addEventListener('click', () => {
+      grupo.querySelectorAll('.op').forEach(o => o.setAttribute('aria-pressed','false'));
+      op.setAttribute('aria-pressed','true');
+      resp[grupo.dataset.campo] = { valor: op.dataset.v, score: +op.dataset.s };
+      erro.classList.remove('on');
+      setTimeout(() => { if (etapa < total) avanca(); }, 240);
+    });
+  });
+});
+
+function mostra(n){
+  document.querySelectorAll('.etapa').forEach(e => e.classList.toggle('ativa', +e.dataset.e === n));
+  document.querySelectorAll('.passo').forEach((p,i) => p.classList.toggle('on', i < n));
+  document.getElementById('voltar').style.display = n > 1 ? 'block' : 'none';
+  document.getElementById('proximo').textContent = n === total ? 'Enviar e agendar' : 'Continuar';
+}
+function avanca(){ if (etapa < total){ etapa++; mostra(etapa); } }
+
+document.getElementById('voltar').addEventListener('click', () => { if (etapa > 1){ etapa--; mostra(etapa); erro.classList.remove('on'); } });
+
+document.getElementById('proximo').addEventListener('click', () => {
+  const campos = ['interesse','historico','urgencia'];
+  if (etapa < total){
+    if (!resp[campos[etapa-1]]){ erro.textContent = 'Selecione uma opção para continuar.'; erro.classList.add('on'); return; }
+    erro.classList.remove('on'); avanca(); return;
+  }
+  enviar();
+});
+
+function temperatura(s){ return s >= 40 ? 'Quente' : s >= 25 ? 'Morno' : 'Frio'; }
+
+async function enviar(){
+  const nome  = document.getElementById('nome').value.trim();
+  const fone  = document.getElementById('fone').value.trim();
+  const turno = document.getElementById('turno').value;
+  const ok    = document.getElementById('lgpd').checked;
+
+  if (nome.length < 3){ erro.textContent = 'Escreva seu nome completo.'; erro.classList.add('on'); return; }
+  if (fone.replace(/\D/g,'').length < 10){ erro.textContent = 'Confira o número do WhatsApp com DDD.'; erro.classList.add('on'); return; }
+  if (!ok){ erro.textContent = 'Precisamos da sua autorização para entrar em contato.'; erro.classList.add('on'); return; }
+  erro.classList.remove('on');
+
+  const score = ['interesse','historico','urgencia'].reduce((t,c) => t + (resp[c]?.score || 0), 0);
+  const lead = {
+    slug: CONFIG.slug, token: CONFIG.token,
+    nome, telefone: fone, origem: 'site',
+    respostas: {
+      'O que quer cuidar': resp.interesse?.valor || '',
+      'Já tratou antes':   resp.historico?.valor || '',
+      'Quando quer começar': resp.urgencia?.valor || '',
+      'Melhor turno': turno || 'não informado'
+    },
+    score, temperatura: temperatura(score)
+  };
+
+  const btn = document.getElementById('proximo');
+  btn.textContent = 'Enviando...'; btn.disabled = true;
+
+  if (CONFIG.endpoint && CONFIG.token){
+    try{ await fetch(CONFIG.endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(lead) }); }
+    catch(e){}
+  }
+
+  const texto =
+    'Olá! Preenchi o formulário do site.%0A%0A' +
+    'Nome: ' + encodeURIComponent(nome) + '%0A' +
+    'Quero cuidar de: ' + encodeURIComponent(lead.respostas['O que quer cuidar']) + '%0A' +
+    'Já tratei antes: ' + encodeURIComponent(lead.respostas['Já tratou antes']) + '%0A' +
+    'Quero começar: ' + encodeURIComponent(lead.respostas['Quando quer começar']) + '%0A' +
+    'Melhor turno: ' + encodeURIComponent(lead.respostas['Melhor turno']);
+  document.getElementById('wa-direto').href = 'https://api.whatsapp.com/send?phone=' + CONFIG.whatsapp + '&text=' + texto;
+
+  document.querySelectorAll('.etapa').forEach(e => e.classList.remove('ativa'));
+  document.getElementById('acoes').style.display = 'none';
+  document.getElementById('passos').style.display = 'none';
+  document.getElementById('sucesso').classList.add('on');
+  if (lead.temperatura === 'Quente'){
+    document.getElementById('msg-sucesso').textContent = 'Você pediu um horário próximo, então a secretaria vai priorizar o seu contato hoje mesmo no WhatsApp.';
+  }
+}
+
+document.getElementById('fone').addEventListener('input', e => {
+  let v = e.target.value.replace(/\D/g,'').slice(0,11);
+  if (v.length > 6)      v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+  else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+  else if (v.length > 0) v = '(' + v;
+  e.target.value = v;
+});
+</script>
+</body>
+</html>
